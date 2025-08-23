@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<p style="font-family: 'Roboto', sans-serif;">This is Roboto font.</p>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<p style="font-family: 'Poppins', sans-serif;">This is Poppins font.</p>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<p style="font-family: 'Lobster', cursive;">This is Lobster font.</p>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<p style="font-family: 'Dancing Script', cursive;">This is Dancing Script font.</p>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<p style="font-family: 'Pacifico', cursive;">This is Pacifico font.</p>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<p style="font-family: 'Montserrat', sans-serif;">This is Montserrat font.</p>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<p style="font-family: 'Shadows Into Light', cursive;">This is Shadows Into Light font.</p>
+
+  <style>
+    :root{
+      --pink:#ff4081;
+      --bg1:#ff9a9e; --bg2:#fad0c4; --bg3:#a1c4fd; --bg4:#c2e9fb;
+      --text:#222; --white:#fff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      color:var(--text);
+      background: linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+      background-size: 400% 400%;
+      animation: bgshift 18s ease infinite;
+      overflow-x:hidden;
+    }
+    @keyframes bgshift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* Layout */
+    .wrap{
+      position:relative;
+      z-index:3;
+      max-width:900px;
+      margin-inline:auto;
+      padding:40px 20px 80px;
+      text-align:center;
+    }
+    h1{
+      margin:10px 0 6px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color:#fff;
+      text-shadow:0 6px 24px rgba(0,0,0,.25);
+    }
+    #typing{
+      margin:6px auto 18px;
+      color:#fff;
+      font-size:clamp(1rem,2.3vw,1.2rem);
+      min-height:2.2em;
+      width:min(780px,90vw);
+      line-height:1.6;
+      letter-spacing:.2px;
+      position:relative;
+      white-space:pre-wrap;
+    }
+    #typing::after{
+      content:"|";
+      margin-left:2px;
+      animation:blink 1s step-end infinite;
+    }
+    #typing.typing-done::after{content:"";animation:none}
+    @keyframes blink{50%{opacity:0}}
+
+    .controls{
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+      margin:8px 0 18px;
+    }
+    .btn{
+      background:var(--pink);
+      color:var(--white);
+      border:0;
+      padding:12px 18px;
+      font-weight:600;
+      border-radius:999px;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(0,0,0,.2);
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(0); filter:saturate(1.1)}
+
+    /* Letter card */
+    .letter{
+      display:none;
+      margin:0 auto 16px;
+      text-align:left;
+      padding:22px 22px;
+      width:min(720px,92vw);
+      background:rgba(255,255,255,.95);
+      border:2px solid #ffd1e0;
+      border-radius:18px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      animation:pop .5s ease forwards;
+    }
+    .letter.open{display:block}
+    @keyframes pop{from{opacity:0; transform:scale(.96) translateY(8px)} to{opacity:1; transform:scale(1)}}
+    .letter h2{margin:0 0 10px; color:var(--pink)}
+    .letter p{margin:0; line-height:1.7; font-size:1.05rem}
+
+    /* Cute cake */
+    .cake{
+      position:relative;
+      width: 300px; height:200px; margin:50px auto 0;
+      filter: drop-shadow(0 14px 30px rgba(0,0,0,.25));
+    }
+    .cake .base{
+      position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+      width:180px; height:85px; background:#ffd79a; border-radius:12px;
+      box-shadow: inset 0 -12px #f5a45d;
+    }
+    .cake .top{
+      position:absolute; bottom:70px; left:50%; transform:translateX(-50%);
+      width:140px; height:50px; background:#ffe8bf; border-radius:12px;
+      box-shadow: inset 0 -10px #f39b4a;
+    }
+    .drip{
+      position:absolute; top:-4px; width:20px; height:26px; background:#ff6f61; border-radius:12px;
+      box-shadow: inset 0 -6px rgba(0,0,0,.06);
+    }
+    .drip.d1{left:25px} .drip.d2{left:60px; height:32px} .drip.d3{left:95px}
+
+    .candles{ position:absolute; bottom:120px; left:50%; transform:translateX(-50%); display:flex; gap:20px;}
+    .candle{
+      position:relative; width:12px; height:42px; background:#fff; border-radius:6px;
+      box-shadow: inset 0 -10px #ffe27a;
+    }
+    .flame{
+      position:absolute; top:-18px; left:50%; transform:translateX(-50%);
+      width:14px; height:18px; background: radial-gradient(circle at 50% 60%, #fff59d 0%, #ffcc00 60%, #ff8c00 100%);
+      border-radius:50% 50% 50% 50%;
+      animation:flicker .22s infinite alternate;
+      filter: drop-shadow(0 0 10px #ffb300);
+    }
+    @keyframes flicker{
+      from{transform:translateX(-50%) scale(1); opacity:.95}
+      to{transform:translateX(-50%) scale(1.18); opacity:.8}
+    }
+
+    /* Overlays */
+    #fwCanvas{
+      position:fixed; inset:0; width:100%; height:100%;
+      z-index:1; pointer-events:none;
+    }
+    #confetti{
+      position:fixed; inset:0; z-index:2; pointer-events:none; overflow:hidden;
+    }
+    .confetti-piece{
+      position:absolute; top:-10vh; opacity:.95;
+      will-change: transform, opacity;
+      animation: confetti-fall var(--dur,5s) linear forwards, confetti-spin var(--spin,1s) ease-in-out infinite;
+    }
+    @keyframes confetti-fall{
+      from{transform: translateY(-10vh) rotate(0deg)}
+      to{transform: translateY(110vh) rotate(360deg)}
+    }
+    @keyframes confetti-spin{
+      from{transform: translateY(var(--y,0)) rotateX(0) rotateY(0)}
+      to{transform: translateY(var(--y,0)) rotateX(360deg) rotateY(180deg)}
+    }
+    h2{
+      font-family:'Pacifico',cursive;
+    }
+    h1{
+      font-family: 'Dancing Script',cursive;
+      font-size: 30px;
+      text-align: center;
+      animation: glow 3s infinite alternate;
+    }
+    @keyframes glow{
+      0%{text-shadow: 0 0 30px red,0 0 30px red;}
+      25%{text-shadow: 0 0 30px orange,0 0 30 orange}
+      50%{text-shadow: 0 0 30px lime,0 0 30 lime}
+      75%{text-shadow: 0 0 30px cyan,0 0 30 cyan}
+      100%{text-shadow: 0 0 30px violet,0 0 30 violet}
+    }
+    
+
+    /* Footer hint */
+    .hint{color:#ffffffcc; font-size:.9rem; margin-top:14px}
+  </style>
+</head>
+<body>
+    style="background-color: black; color: white; text-align: center;">
+
+  <h1>🎵 Happy Birthday Song 🎵</h1>
+
+  <!-- Audio player -->
+  <audio autoplay loop>
+    <source src="hbd.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <!-- Fireworks & Confetti layers -->
+  <canvas id="fwCanvas" aria-hidden="true"></canvas>
+  <div id="confetti" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <h1>🎉 Happy Birthday Sai Shreya🎂</h1>
+    <div id="typing" aria-live="polite"></div>
+
+    <div class="controls">
+      <button id="btnLetter" class="btn">💌 Open Your Letter</button>
+    </div>
+
+    <section id="letter" class="letter" aria-hidden="true">
+      <h2>💖 A Special Message to my Sister 💖</h2>
+      <p id="letterText">
+Dear Sai Shreya(Meri Didi),
+        Ur one of the most special person I've ever met in my life.Ur such a true soul and it's truely a blessing to have a friend and a sister like U in my life.I hope our friendship never ends.Once again "Happy Birthday Akka" have a wonderful life in ur future and always keep smiling.I wish u have a very bright and successful future 'Miss Billionaire'.Never doubt urself ur capable of achieving everyrhing in ur life.
+          "As you know,madness is like gravity:All it takes is a little push"-Joker(The dark knight)
+            Be mad something never get settled for simple things in life.It is not easy as u think.
+              "The only sensible way to live in this world is without rules".So live as u wish and just have a beautiful smile in ur face.
+                Once again,
+                  Happy Birthday! Sai Shreya🎂. Let all your wishes come true ✨.
+                    ★🎂 ℋ𝑎𝑝𝑝𝑦 ℬ𝑖𝑟𝑡ℎ𝑑𝑎𝑦 🎂★
+      </p>
+    </section>
+
+    <div class="cake" aria-hidden="true">
+      <div class="top">
+        <span class="drip d1"></span><span class="drip d2"></span><span class="drip d3"></span>
+      </div>
+      <div class="base"></div>
+      <div class="candles">
+        <div class="candle"><span class="flame"></span></div>
+        <div class="candle"><span class="flame"></span></div>
+        <div class="candle"><span class="flame"></span></div>
+      </div>
+    </div>
+
+    <div class="hint"> <b></b></div>
+  </main>
+
+  <script>
+    /********* Typing effect *********/
+    (function(){
+      const line = "Wishing you a day filled with love, laughter, and unforgettable memories! 🎁🎂✨";
+      const el = document.getElementById("typing");
+      let i = 0;
+      (function type(){
+        el.textContent = line.slice(0, i++);
+        if(i <= line.length){ setTimeout(type, 35); }
+        else { el.classList.add("typing-done"); }
+      })();
+    })();
+
+    /********* Letter open + confetti *********/
+    const btnLetter = document.getElementById("btnLetter");
+    const letter = document.getElementById("letter");
+    const confettiLayer = document.getElementById("confetti");
+
+    btnLetter.addEventListener("click", () => {
+      const opening = !letter.classList.contains("open");
+      letter.classList.toggle("open");
+      letter.setAttribute("aria-hidden", opening ? "false" : "true");
+      btnLetter.textContent = letter.classList.contains("open") ? "💌 Hide Letter" : "💌 Open Your Letter";
+      if(opening){ burstConfetti(); }
+    });
+
+    function burstConfetti(){
+      const colors = ["#ff4757","#ff7f50","#ffa502","#2ed573","#1e90ff","#a29bfe","#ff6b81","#70a1ff"];
+      const pieces = 160;
+      for(let i=0;i<pieces;i++){
+        const s = document.createElement("span");
+        s.className = "confetti-piece";
+        const size = 6 + Math.random()*10;
+        s.style.width = size+"px";
+        s.style.height = (size*0.5 + Math.random()*8) + "px";
+        s.style.left = (Math.random()*100) + "vw";
+        s.style.background = colors[(Math.random()*colors.length)|0];
+        const fall = (4 + Math.random()*3).toFixed(2);
+        const spin = (0.7 + Math.random()*0.9).toFixed(2);
+        s.style.animation = `confetti-fall ${fall}s linear forwards, confetti-spin ${spin}s ease-in-out infinite`;
+        confettiLayer.appendChild(s);
+        s.addEventListener("animationend", ()=> s.remove(), {once:true});
+      }
+    }
+
+    /********* Fireworks *********/
+    (function(){
+      const canvas = document.getElementById("fwCanvas");
+      const ctx = canvas.getContext("2d");
+      function resize(){
+        canvas.width = innerWidth; canvas.height = innerHeight;
+      }
+      addEventListener("resize", resize, {passive:true}); resize();
+
+      const particles = [];
+      function Particle(x,y,vx,vy,color){
+        this.x=x; this.y=y; this.vx=vx; this.vy=vy; this.alpha=1; this.decay=0.007 + Math.random()*0.01; this.color=color; this.size=2;
+      }
+      Particle.prototype.update=function(){
+        this.x += this.vx; this.y += this.vy;
+        this.vy += 0.02;  // gravity
+        this.alpha -= this.decay;
+      };
+      Particle.prototype.draw=function(){
+        ctx.globalAlpha = Math.max(this.alpha,0);
+        ctx.fillStyle = this.color;
+        ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill();
+      };
+
+      function spawnFirework(){
+        const x = Math.random()*canvas.width;
+        const y = Math.random()*canvas.height*0.5 + 40;
+        const hue = (Math.random()*360)|0;
+        const color = `hsl(${hue} 100% 60%)`;
+        const count = 36;
+        for(let i=0;i<count;i++){
+          const angle = (i/count) * Math.PI*2;
+          const speed = 2 + Math.random()*3.8;
+          particles.push(new Particle(x,y,Math.cos(angle)*speed,Math.sin(angle)*speed,color));
+        }
+      }
+
+      function tick(){
+        requestAnimationFrame(tick);
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "rgba(0,0,0,0.15)";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.globalCompositeOperation = "lighter";
+        for(let i=particles.length-1;i>=0;i--){
+          const p = particles[i];
+          p.update(); p.draw();
+          if(p.alpha <= 0){ particles.splice(i,1); }
+        }
+      }
+      setInterval(spawnFirework, 1500);
+      tick();
+    })();
+
+    /********* Download E-Card (PNG) *********/
+    document.getElementById("btnDownload").addEventListener("click", downloadCard);
+
+    function downloadCard(){
+      const W = 1200, H = 1600, M = 90;
+      const can = document.createElement("canvas");
+      can.width = W; can.height = H;
+      const c = can.getContext("2d");
+
+      // Background gradient
+      const g = c.createLinearGradient(0,0,W,H);
+      g.addColorStop(0,"#ff9a9e"); g.addColorStop(.5,"#fad0c4"); g.addColorStop(1,"#a1c4fd");
+      c.fillStyle = g; c.fillRect(0,0,W,H);
+
+      // Title
+      c.shadowColor = "rgba(0,0,0,.25)"; c.shadowBlur = 18;
+      c.fillStyle = "#ffffff";
+      c.textAlign = "center";
+      c.font = "bold 88px Arial, sans-serif";
+      c.fillText("Happy Birthday!", W/2, 150);
+      c.shadowBlur = 0;
+
+      // Draw a simple cake
+      drawCake(c, W/2, 280);
+
+      // Message from the letter
+      const msg = document.getElementById("letterText").innerText.trim();
+      c.fillStyle = "#222";
+      c.font = "28px Arial, sans-serif";
+      c.textAlign = "left";
+      wrapText(c, msg, M, 520, W - M*2, 42);
+
+      // Footer confetti dots
+      for(let i=0;i<140;i++){
+        c.fillStyle = `hsl(${(Math.random()*360)|0} 90% 60%)`;
+        c.beginPath();
+        c.arc(Math.random()*W, 1200 + Math.random()*350, Math.random()*3+1, 0, Math.PI*2);
+        c.fill();
+      }
+
+      
+    }
+
+    function drawCake(c, cx, topY){
+      // top layer
+      c.fillStyle = "#ffe8bf";
+      roundRect(c, cx-220, topY, 440, 90, 18, true);
+      c.fillStyle = "#f39b4a";
+      roundRect(c, cx-220, topY+70, 440, 20, 18, true);
+
+      // bottom layer
+      c.fillStyle = "#ffd79a";
+      roundRect(c, cx-280, topY+90, 560, 120, 20, true);
+      c.fillStyle = "#f5a45d";
+      roundRect(c, cx-280, topY+180, 560, 30, 20, true);
+
+      // candles
+      for(let i=-80;i<=80;i+=80){
+        c.fillStyle="#ffffff";
+        roundRect(c, cx+i-8, topY-44, 16, 44, 8, true);
+        // flame
+        const grd = c.createRadialGradient(cx+i, topY-55, 0, cx+i, topY-55, 12);
+        grd.addColorStop(0, "#fff59d");
+        grd.addColorStop(0.6, "#ffcc00");
+        grd.addColorStop(1, "rgba(255,140,0,.6)");
+        c.fillStyle = grd;
+        c.beginPath(); c.arc(cx+i, topY-55, 12, 0, Math.PI*2); c.fill();
+      }
+    }
+    function roundRect(c,x,y,w,h,r,fill){
+      c.beginPath();
+      c.moveTo(x+r,y);
+      c.arcTo(x+w,y,x+w,y+h,r);
+      c.arcTo(x+w,y+h,x,y+h,r);
+      c.arcTo(x,y+h,x,y,r);
+      c.arcTo(x,y,x+w,y,r);
+      if(fill) c.fill(); else c.stroke();
+    }
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight){
+      const paragraphs = text.split(/\n+/);
+      for(const para of paragraphs){
+        const words = para.split(/\s+/);
+        let line = "";
+        for(let n=0;n<words.length;n++){
+          const test = line + words[n] + " ";
+          const w = ctx.measureText(test).width;
+          if(w > maxWidth && n>0){
+            ctx.fillText(line, x, y);
+            line = words[n] + " ";
+            y += lineHeight;
+          } else {
+            line = test;
+          }
+        }
+        ctx.fillText(line, x, y);
+        y += lineHeight + 10;
+      }
+    }
+  </script>
+</body>
+</html>
